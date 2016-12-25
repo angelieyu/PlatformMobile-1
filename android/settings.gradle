@@ -1,0 +1,3 @@
+rootProject.name = 'ecmMobile'
+
+include ':app'
