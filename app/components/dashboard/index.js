@@ -34,7 +34,7 @@ export default class Dashboard extends Component {
                       selectedTab: 'listCert',
                   });
             }}>
-            <ListCertScreen/>
+            <ListCertScreen navigator={this.props.navigator}/>
           </TabBarIOS.Item>
           <TabBarIOS.Item
             selected={this.state.selectedTab === 'addCert'}
