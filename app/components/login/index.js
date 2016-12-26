@@ -7,10 +7,14 @@ import {
   Image,
   Dimensions,
   TextInput,
-  Button,
   TouchableOpacity
 } from 'react-native';
 //import Dashboard from '../dashboard'
+import {
+  Button,
+  FormLabel,
+  FormInput
+}from 'react-native-elements';
 import ProductNav from '../productNav'
 
 const { width, height } = Dimensions.get("window");
@@ -42,6 +46,7 @@ export default class LoginScreen extends Component {
             <Image source={logo} style={styles.mark} resizeMode="contain" />
           </View>
           <View style={styles.wrapper}>
+
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
                 <Image source={personIcon} style={styles.icon} resizeMode="contain" />
@@ -63,12 +68,12 @@ export default class LoginScreen extends Component {
                 secureTextEntry
               />
             </View>
-
-            <TouchableOpacity activeOpacity={.5}>
-              <View style={styles.button}>
-                <Text onPress={ this._navigate } style={styles.buttonText}>Sign In</Text>
-              </View>
-            </TouchableOpacity>
+            <Button
+              raised
+              icon={{name: 'https'}}
+              title='SIGN IN'
+              backgroundColor='#6ec4e9'
+              onPress={ this._navigate }/>
           </View>
           <View style={styles.container}>
 

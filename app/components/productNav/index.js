@@ -4,10 +4,16 @@ import {
   Text,
   View,
   Alert,
+  Image,
   Dimensions,
   TouchableOpacity
 } from 'react-native';
+import {
+  Button
+}from 'react-native-elements';
+
 import Dashboard from '../dashboard';
+const logo = require("./sovos-logo.png");
 
 const { width, height } = Dimensions.get("window");
 
@@ -16,7 +22,7 @@ export default class ProductNav extends Component {
      super(props);
      this._navigate = this._navigate.bind(this);
      this.state = {
-       
+
      };
    }
 
@@ -30,23 +36,45 @@ export default class ProductNav extends Component {
     Alert.alert(
       'To Be Determine',
       'Comming up soon ...'
-    ) 
+    )
    }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity activeOpacity={.5}>
-          <View style={styles.button}>
-            <Text onPress={ this._navigate } style={styles.buttonText}>ECM</Text>
+        <View style={styles.logo}>
+          <Image source={logo} style={styles.mark} resizeMode="center" />
+        </View>
+        <View style={styles.wrapper}>
+          <View style={styles.linkWrap}>
+            <Button
+              raised
+              icon={{name: 'certificate', type:'font-awesome'}}
+              title='CERTIFICATE MANAGEMENT'
+              backgroundColor='#6ec4e9'
+              onPress={ this._navigate }
+              />
           </View>
-        </TouchableOpacity>
+          <View style={styles.linkWrap}>
+            <Button
+              raised
+              icon={{name: 'calculator', type:'font-awesome'}}
+              title='ALLOY'
+              backgroundColor='#6ec4e9'
+              onPress={ this._toBeDetermine }
+              />
+          </View>
+          <View style={styles.linkWrap}>
+            <Button
+              raised
+              icon={{name: 'line-chart', type:'font-awesome'}}
+              title='REPORT'
+              backgroundColor='#6ec4e9'
+              onPress={ this._toBeDetermine }
+              />
+          </View>
+        </View>
 
-        <TouchableOpacity activeOpacity={.5}>
-          <View style={styles.button}>
-            <Text onPress={ this._toBeDetermine } style={styles.buttonText}>...</Text>
-          </View>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -56,43 +84,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  markWrap: {
-    flex: 1,
-    paddingVertical: 30,
+  logo: {
+    paddingVertical: 0,
+
   },
   mark: {
-    width: null,
-    height: null,
-    flex: 1,
+    height: 30
   },
   background: {
     width,
     height,
     //backgroundColor: "white",
   },
+
   wrapper: {
-    paddingVertical: 30,
+    paddingVertical: 10
   },
-  inputWrap: {
-    flexDirection: "row",
-    marginVertical: 10,
-    height: 40,
-    borderBottomWidth: 1,
-    borderBottomColor: "#CCC"
+  linkWrap: {
+    paddingVertical:20
   },
-  iconWrap: {
-    paddingHorizontal: 7,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  icon: {
-    height: 20,
-    width: 20,
-  },
-  input: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
+
+
   button: {
     height: 100,
     width: 100,
@@ -105,24 +117,5 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#FFF",
     fontSize: 18,
-  },
-  forgotPasswordText: {
-    color: "#D8D8D8",
-    backgroundColor: "transparent",
-    textAlign: "right",
-    paddingRight: 15,
-  },
-  signupWrap: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  accountText: {
-    color: "#D8D8D8"
-  },
-  signupLinkText: {
-    color: "#FFF",
-    marginLeft: 5,
   }
 });
