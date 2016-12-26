@@ -43,7 +43,7 @@ export default class ProductNav extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logo}>
-          <Image source={logo} style={styles.mark} resizeMode="center" />
+          <Image source={logo} style={styles.mark}/>
         </View>
         <View style={styles.wrapper}>
           <View style={styles.linkWrap}>
@@ -74,7 +74,6 @@ export default class ProductNav extends Component {
               />
           </View>
         </View>
-
       </View>
     );
   }
@@ -82,23 +81,19 @@ export default class ProductNav extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1
   },
   logo: {
-    paddingVertical: 0,
-
+    alignItems: 'center',
+    marginBottom:0
   },
   mark: {
-    height: 30
-  },
-  background: {
-    width,
-    height,
-    //backgroundColor: "white",
+    width: 100, height: 23
   },
 
   wrapper: {
-    paddingVertical: 10
+    flex: 1,
+    paddingVertical: 20
   },
   linkWrap: {
     paddingVertical:20

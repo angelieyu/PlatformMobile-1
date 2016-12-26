@@ -43,7 +43,7 @@ export default class LoginScreen extends Component {
       <View style={styles.container}>
         <View style={styles.background} resizeMode="cover">
           <View style={styles.markWrap}>
-            <Image source={logo} style={styles.mark} resizeMode="contain" />
+            <Image source={logo} style={styles.mark}/>
           </View>
           <View style={styles.wrapper}>
 
