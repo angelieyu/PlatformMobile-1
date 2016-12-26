@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
 });
 
 class ListCertScreen extends Component {
+    constructor(props) {
+     super(props);
+   }
     render() {
         return (
             <NavigatorIOS
@@ -20,9 +23,14 @@ class ListCertScreen extends Component {
                 tintColor='#fff'
                 style={styles.container}
                 initialRoute={{
-            title: 'Certificate List',
-            component: CertList
-        }}/>
+                    title: 'Certificate List222',
+                    leftButtonTitle: 'Left',
+                    leftButtonIcon: require('../dashboard/add.png'),
+                    onLeftButtonPress: () => {
+                      this.props.navigator.pop();
+                    },
+                    component: CertList
+                }}/>
         );
     }
 }
