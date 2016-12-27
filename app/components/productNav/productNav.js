@@ -5,44 +5,68 @@ import {
   View,
   Alert,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity, 
+  AppState
 } from 'react-native';
 import Dashboard from '../dashboard';
 
+import PushController from './PushController';
+var PushNotification = require('react-native-push-notification');
+
+
 export default class ProductNav extends Component {
   constructor(props) {
-     super(props);
-     this._navigate = this._navigate.bind(this);
-   }
+   super(props);
+   this._navigate = this._navigate.bind(this);
+   this._onLocalNotification = this._onLocalNotification.bind(this);
+ }
 
-   _navigate() {
-    this.props.navigator.push({
-      component: Dashboard
-    })
-   }
+ componentDidMount() {
+  AppState.addEventListener('change', this._onLocalNotification);
+}
 
-   _toBeDetermine() {
-    Alert.alert(
-      'To Be Determine',
-      'Comming up soon ...'
+componentWillUnmount() {
+  AppState.removeEventListener('change', this._onLocalNotification);
+}
+
+_navigate() {
+  this.props.navigator.push({
+    component: Dashboard
+  })
+}
+
+_toBeDetermine() {
+  Alert.alert(
+    'To Be Determine',
+    'Comming up soon ...'
     ) 
-   }
+}
+_onLocalNotification(notification){
+  if(notification === 'background') {
+    PushNotification.localNotificationSchedule({
+      message: 'Your certificate will be expired soon.',
+      date: new Date(Date.now() + 1000),
+    });
+  }
+  
+}
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity activeOpacity={.5} onPress={ this._navigate }>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>ECM</Text>
-          </View>
-        </TouchableOpacity>
+render() {
+  return (
+    <View style={styles.container}>
+    <TouchableOpacity activeOpacity={.5} onPress={ this._navigate }>
+    <View style={styles.button}>
+    <Text style={styles.buttonText}>ECM</Text>
+    </View>
+    </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={.5} onPress={ this._toBeDetermine }>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>...</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+    <TouchableOpacity activeOpacity={.5} onPress={ this._toBeDetermine }>
+    <View style={styles.button}>
+    <Text style={styles.buttonText}>...</Text>
+    </View>
+    </TouchableOpacity>
+    <PushController />
+    </View>
     );
   }
 }
