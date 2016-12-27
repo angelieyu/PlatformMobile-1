@@ -19,9 +19,14 @@ class AddCertScreen extends Component {
               tintColor='#fff'
                 style={styles.container}
                 initialRoute={{
-            title: 'Add Certificates',
-            component: AddCert
-        }}/>
+                    title: 'Add Certificates',
+                    leftButtonTitle: 'Left',
+                    leftButtonIcon: require('../productNav/arrow-back.png'),
+                    onLeftButtonPress: () => {
+                      this.props.navigator.pop();
+                    },
+                    component: AddCert
+                }}/>
         );
     }
 }

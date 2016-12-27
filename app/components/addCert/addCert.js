@@ -6,6 +6,7 @@ import {
   View,
   Text,
   Dimensions,
+  Alert,
   Image,
   TouchableOpacity
 } from 'react-native';
@@ -17,30 +18,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center"
   },
-  inputContainer: {
-    width: Dimensions.get("window").width - 5,
-    flexDirection: "row",
+  button: {
+    height: 60,
+    width: 160,
+    backgroundColor: "#6ec4e9",
     alignItems: "center",
-    marginTop: 20,
-    borderBottomWidth: 1
+    justifyContent: "center",
   },
-  input: {
-    flex: 1,
-    height: 40,
-    backgroundColor: "white",
-    fontSize: 16,
-    padding: 5
+  buttonText: {
+    color: "#FFF",
+    fontSize: 18,
   },
-  profilePictureContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+  picContainer: {
+    marginTop: 15,
+    marginBottom: 5
   },
-  profilePicture: {
+  pic: {
     width: 300,
-    height: 500,
-    backgroundColor: "#D8D8D8",
-    marginBottom: 20
+    height: 350,
+    marginTop: 40,
+    backgroundColor: "#D8D8D8"
   }
 });
 
@@ -51,7 +48,7 @@ class AddCertScreen extends Component {
     super(props);
     this.state = {
       name: '',
-      profilePicture: ''
+      pic: ''
     }
   }
 
@@ -59,16 +56,26 @@ class AddCertScreen extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          style={styles.profilePictureContainer}
+          style={styles.picContainer}
           onPress={() => this.takePicture()}
         >
           <Image
-            source={this.state.profilePicture}
-            style={styles.profilePicture}
+            source={this.state.pic}
+            style={styles.pic}
           />
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={.5} style={ styles.button } onPress={ this._upload }>
+            <Text style={ styles.buttonText }>Upload</Text>
         </TouchableOpacity>
       </View>
     );
+  }
+
+  _upload() {
+    Alert.alert(
+      'Upload',
+      'Comming up soon ...'
+    ) 
   }
 
   takePicture() {
@@ -77,7 +84,7 @@ class AddCertScreen extends Component {
     , (picture) => {
       if (picture.data) {
         this.setState({
-          profilePicture: {
+          pic: {
             uri: 'data:image/jpeg;base64,' + picture.data, isStatic: true
           }
         });
