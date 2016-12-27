@@ -45,7 +45,7 @@ export default class Dashboard extends Component {
                     selectedTab: 'addCert',
                 });
             }}>
-              <AddCertScreen/>
+              <AddCertScreen navigator={this.props.navigator}/>
           </TabBarIOS.Item>
         </TabBarIOS>
     );
