@@ -10,8 +10,8 @@ import {
   TabBarIOS,
   TouchableOpacity
 } from 'react-native';
-import AddCertScreen from "../addCert";
-import ListCertScreen from "../certList";
+import AddCertScreen from "../addCert/addCert";
+import ListCertScreen from "../certList/certList";
 
 
 export default class Dashboard extends Component {
