@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
 class ProductNavigateScreen extends Component {
     constructor(props) {
      super(props);
-   }
+    }
+
     render() {
         return (
             <NavigatorIOS
@@ -28,6 +29,8 @@ class ProductNavigateScreen extends Component {
                 }}/>
         );
     }
+
+   
 }
 
 export default ProductNavigateScreen;
