@@ -10,7 +10,6 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-//import Dashboard from '../dashboard'
 import ProductNav from '../productNav'
 
 const { width, height } = Dimensions.get("window");
@@ -28,7 +27,6 @@ export default class LoginScreen extends Component {
 
    _navigate() {
      this.props.navigator.push({
-       //component: Dashboard
        component: ProductNav
      })
   }
