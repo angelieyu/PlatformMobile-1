@@ -23,9 +23,9 @@ class ListCertScreen extends Component {
                 tintColor='#fff'
                 style={styles.container}
                 initialRoute={{
-                    title: 'Certificate List222',
+                    title: 'Certificate List',
                     leftButtonTitle: 'Left',
-                    leftButtonIcon: require('../dashboard/add.png'),
+                    leftButtonIcon: require('../productNav/arrow-back.png'),
                     onLeftButtonPress: () => {
                       this.props.navigator.pop();
                     },
