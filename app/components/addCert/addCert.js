@@ -9,7 +9,9 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-
+import {
+  Button
+}from 'react-native-elements';
 var ImagePicker = require('react-native-image-picker');
 
 const styles = StyleSheet.create({
@@ -17,30 +19,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center"
   },
-  inputContainer: {
-    width: Dimensions.get("window").width - 5,
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 20,
-    borderBottomWidth: 1
-  },
-  input: {
-    flex: 1,
-    height: 40,
-    backgroundColor: "white",
-    fontSize: 16,
-    padding: 5
-  },
+
   profilePictureContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },
   profilePicture: {
-    width: 300,
+    width: 390,
     height: 500,
+    justifyContent: 'flex-end',
     backgroundColor: "#D8D8D8",
-    marginBottom: 20
+    marginBottom: 5
   }
 });
 
@@ -66,7 +56,27 @@ class AddCertScreen extends Component {
             source={this.state.profilePicture}
             style={styles.profilePicture}
           />
+
+          <Button
+            raised
+            style={{flex:1, marginBottom:5}}
+            icon={{name: 'plus-square', type: 'font-awesome'}}
+            title='Add Photo'
+            backgroundColor='#6ec4e9'
+            onPress={ () => this.takePicture()}
+            />
+            <Button
+              disabled={this.state.profilePicture.isStatic!==true}
+              raised
+              style={{flex:1}}
+              icon={{name:'upload', type: 'font-awesome'}}
+              title='Upload Certificate'
+              backgroundColor='#6ec4e9'
+              onPress={ () => this.takePicture()}
+              />
         </TouchableOpacity>
+
+
       </View>
     );
   }

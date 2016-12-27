@@ -11,9 +11,7 @@ import {
 } from 'react-native';
 //import Dashboard from '../dashboard'
 import {
-  Button,
-  FormLabel,
-  FormInput
+  Button
 }from 'react-native-elements';
 import ProductNav from '../productNav'
 
@@ -90,13 +88,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   markWrap: {
-    flex: 1,
+    alignItems: 'center',
     paddingVertical: 30,
   },
   mark: {
-    width: null,
-    height: null,
-    flex: 1,
+  alignItems: 'center',
   },
   background: {
     width,
