@@ -12,6 +12,9 @@ import {
 import {
   Button
 }from 'react-native-elements';
+import api from '../../actions/api';
+
+
 var ImagePicker = require('react-native-image-picker');
 
 const styles = StyleSheet.create({
@@ -22,11 +25,11 @@ const styles = StyleSheet.create({
 
   profilePictureContainer: {
     flex: 1,
-    alignItems: "center",
+   alignItems: 'center',
     justifyContent: "center"
   },
   profilePicture: {
-    width: 390,
+    width:390,
     height: 500,
     justifyContent: 'flex-end',
     backgroundColor: "#D8D8D8",
@@ -41,25 +44,27 @@ class AddCertScreen extends Component {
     super(props);
     this.state = {
       name: '',
-      profilePicture: ''
+      profilePicture: {uri:''}
     }
   }
 
   render() {
+    let orgItems={
+
+    };
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.profilePictureContainer}
-          onPress={() => this.takePicture()}
-        >
+        <View
+          style={styles.profilePictureContainer}>
+
           <Image
             source={this.state.profilePicture}
             style={styles.profilePicture}
           />
-
+        <View style={{flexDirection:'row'}}>
           <Button
             raised
-            style={{flex:1, marginBottom:5}}
+            style={{flex:1, marginBottom:2}}
             icon={{name: 'plus-square', type: 'font-awesome'}}
             title='Add Photo'
             backgroundColor='#6ec4e9'
@@ -72,9 +77,10 @@ class AddCertScreen extends Component {
               icon={{name:'upload', type: 'font-awesome'}}
               title='Upload Certificate'
               backgroundColor='#6ec4e9'
-              onPress={ () => this.takePicture()}
+              onPress={ () => this.uploadImage()}
               />
-        </TouchableOpacity>
+          </View>
+        </View>
 
 
       </View>
@@ -88,12 +94,19 @@ class AddCertScreen extends Component {
       if (picture.data) {
         this.setState({
           profilePicture: {
-            uri: 'data:image/jpeg;base64,' + picture.data, isStatic: true
+            uri: 'data:image/jpeg;base64,' + picture.data,
+            isStatic: true,
+            image: picture
           }
         });
       }
     });
   }
+
+  uploadImage(){
+    api.postCertImage(this.state.profilePicture.image, '1000')
+  }
+
 }
 
 export default AddCertScreen;

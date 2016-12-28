@@ -8,6 +8,9 @@ import {
   TouchableHighlight,
   Linking,
 } from 'react-native';
+import {
+  Button
+}from 'react-native-elements';
 import api from '../../actions/api';
 import DetailViewer from '../detail';
 
@@ -47,14 +50,22 @@ class ListCert extends Component {
       <ListView
         dataSource = {this.state.dataSource}
         renderRow = {this.renderRow.bind(this)}
-        renderHeader = {() => <View style={{height: 45, backgroundColor: '#f5f5f5'}} />}
+        renderHeader = {() => <View style={{height: 45, backgroundColor: '#f5f5f5', marginBottom:10}} />}
         onEndReached = {() => console.log('')}
         renderSeparator = {(sectionID, rowID) =>
           <View
             style={styles.style_separator}
             key={`${sectionID} - ${rowID}`}
           />}
-      />
+      >
+      <Button
+        raised
+        style={{flex:1}}
+        icon={{name: 'plus-square', type: 'font-awesome'}}
+        title='Load More'
+        backgroundColor='#6ec4e9'
+        />
+    </ListView>
     );
   }
 
@@ -80,6 +91,7 @@ class ListCert extends Component {
          <View style={styles.separator} />
         </View>
       </TouchableHighlight>
+
         );
       }
 

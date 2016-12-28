@@ -46,7 +46,7 @@ export default class ProductNav extends Component {
           <Image source={logo} style={styles.mark}/>
         </View>
         <View style={styles.wrapper}>
-          <View style={styles.linkWrap}>
+          <View style={styles.btnWrap}>
             <Button
               raised
               icon={{name: 'certificate', type:'font-awesome'}}
@@ -55,7 +55,7 @@ export default class ProductNav extends Component {
               onPress={ this._navigate }
               />
           </View>
-          <View style={styles.linkWrap}>
+          <View style={styles.btnWrap}>
             <Button
               raised
               icon={{name: 'calculator', type:'font-awesome'}}
@@ -64,7 +64,7 @@ export default class ProductNav extends Component {
               onPress={ this._toBeDetermine }
               />
           </View>
-          <View style={styles.linkWrap}>
+          <View style={styles.btnWrap}>
             <Button
               raised
               icon={{name: 'line-chart', type:'font-awesome'}}
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 20
   },
-  linkWrap: {
+  btnWrap: {
     paddingVertical:20
   },
 

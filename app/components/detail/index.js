@@ -12,8 +12,13 @@ export default class PdfViewer extends Component {
    constructor(props) {
     super(props);
   }
+  formatDate(timeStamp){
+    let t = new Date( 1370001284000 );
+    return t.format("dd.mm.yyyy hh:MM:ss");
+  }
 
   render() {
+
       let rowData = this.props.rowData;
       let link = api.getCertImageUrl(rowData.certificateId);
       //console.log("rowData is ", rowData);
@@ -45,7 +50,7 @@ export default class PdfViewer extends Component {
             Page Count : {rowData.pageCount}
           </Text>
           <Text style={styles.rowBoldfield}>
-            Date of Upload : {rowData.dateOfUpload}
+            Date of Upload : {(rowData.dateOfUpload)}
           </Text>
         </View>
       );
