@@ -5,8 +5,8 @@ const url = 'http://10.1.100.145:8080/api'
 
 let api = {
     getCertList(){
-        let listURL = url + '/certificates';
-        // let listURL = url;
+        // let listURL = url + '/certificates';
+        let listURL = url;
         return fetch(listURL).then((res) => res.json());
     },
 
