@@ -1,116 +1,41 @@
+'use strict';
+
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  Alert,
-  Image,
-  Dimensions,
-  TouchableOpacity
+  NavigatorIOS
 } from 'react-native';
-import {
-  Button
-}from 'react-native-elements';
 
 import Dashboard from '../dashboard';
 const logo = require("./sovos-logo.png");
-
-const { width, height } = Dimensions.get("window");
-
-export default class ProductNav extends Component {
-  constructor(props) {
-     super(props);
-     this._navigate = this._navigate.bind(this);
-     this.state = {
-
-     };
-   }
-
-   _navigate() {
-    this.props.navigator.push({
-      component: Dashboard
-    })
-   }
-
-   _toBeDetermine() {
-    Alert.alert(
-      'To Be Determine',
-      'Comming up soon ...'
-    )
-   }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.logo}>
-          <Image source={logo} style={styles.mark}/>
-        </View>
-        <View style={styles.wrapper}>
-          <View style={styles.btnWrap}>
-            <Button
-              raised
-              icon={{name: 'certificate', type:'font-awesome'}}
-              title='CERTIFICATE MANAGEMENT'
-              backgroundColor='#6ec4e9'
-              onPress={ this._navigate }
-              />
-          </View>
-          <View style={styles.btnWrap}>
-            <Button
-              raised
-              icon={{name: 'calculator', type:'font-awesome'}}
-              title='ALLOY'
-              backgroundColor='#6ec4e9'
-              onPress={ this._toBeDetermine }
-              />
-          </View>
-          <View style={styles.btnWrap}>
-            <Button
-              raised
-              icon={{name: 'line-chart', type:'font-awesome'}}
-              title='REPORT'
-              backgroundColor='#6ec4e9'
-              onPress={ this._toBeDetermine }
-              />
-          </View>
-        </View>
-      </View>
-    );
-  }
-}
+import ProductNav from './productNav';
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1
-  },
-  logo: {
-    alignItems: 'center',
-    marginBottom:0
-  },
-  mark: {
-    width: 100, height: 23
-  },
-
-  wrapper: {
-    flex: 1,
-    paddingVertical: 20
-  },
-  btnWrap: {
-    paddingVertical:20
-  },
-
-
-  button: {
-    height: 100,
-    width: 100,
-    backgroundColor: "#6ec4e9",
-    paddingVertical: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 18,
-  }
+    container: {
+        flex: 1,
+        backgroundColor : '#6ec4e9'
+    }
 });
+
+class ProductNavigateScreen extends Component {
+    constructor(props) {
+     super(props);
+   }
+
+
+    render() {
+        return (
+            <NavigatorIOS
+                barTintColor='#6ec4e9'
+                titleTextColor='#fff'
+                tintColor='#fff'
+                style={styles.container}
+                initialRoute={{
+                    title: 'Product Navigation',
+                    component: ProductNav
+                }}/>
+        );
+    }
+}
+
+export default ProductNavigateScreen;

@@ -96,9 +96,6 @@ class ListCert extends Component {
       }
 
   onPressRow(rowID, rowData) {
-    console.log("row data is ", rowData);
-    console.log("props navigator is ", this.props.navigator);
-
     // let link = api.getCertImageUrl(rowData.certificateId);
     // Linking.openURL(link);
 

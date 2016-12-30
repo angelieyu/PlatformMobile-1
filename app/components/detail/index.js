@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  Linking,
+  WebView,
 } from 'react-native';
 import api from '../../actions/api';
 
@@ -21,11 +21,11 @@ export default class PdfViewer extends Component {
 
       let rowData = this.props.rowData;
       let link = api.getCertImageUrl(rowData.certificateId);
-      //console.log("rowData is ", rowData);
       return(
         <View style={styles.container}>
-           <Text style={styles.linkfield}
-              onPress={() => Linking.openURL(link)}>
+          <WebView source={{uri: link}} />
+          
+          <Text style={styles.rowBoldfield}>
               File name : {rowData.fileName}
           </Text>
           <Text style={styles.rowBoldfield}>
@@ -61,7 +61,7 @@ export default class PdfViewer extends Component {
 const styles = StyleSheet.create({
     container: {
          flex:1,
-         marginTop:50
+         marginTop:25
     },
     linkfield : {
           color: 'blue',

@@ -10,8 +10,8 @@ import {
   TabBarIOS,
   TouchableOpacity
 } from 'react-native';
-import AddCertScreen from "../addCert";
-import ListCertScreen from "../certList";
+import AddCertScreen from "../addCert/addCert";
+import ListCertScreen from "../certList/certList";
 
 
 export default class Dashboard extends Component {
@@ -34,7 +34,7 @@ export default class Dashboard extends Component {
                       selectedTab: 'listCert',
                   });
             }}>
-            <ListCertScreen/>
+            <ListCertScreen navigator={this.props.navigator}/>
           </TabBarIOS.Item>
           <TabBarIOS.Item
             selected={this.state.selectedTab === 'addCert'}
@@ -45,7 +45,7 @@ export default class Dashboard extends Component {
                     selectedTab: 'addCert',
                 });
             }}>
-              <AddCertScreen/>
+              <AddCertScreen navigator={this.props.navigator}/>
           </TabBarIOS.Item>
         </TabBarIOS>
     );

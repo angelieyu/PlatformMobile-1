@@ -6,6 +6,7 @@ import {
   View,
   Text,
   Dimensions,
+  Alert,
   Image,
   TouchableOpacity
 } from 'react-native';
@@ -23,12 +24,12 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
 
-  profilePictureContainer: {
+  picContainer: {
     flex: 1,
-   alignItems: 'center',
+    alignItems: 'center',
     justifyContent: "center"
   },
-  profilePicture: {
+  pic: {
     width:390,
     height: 500,
     justifyContent: 'flex-end',
@@ -44,7 +45,7 @@ class AddCertScreen extends Component {
     super(props);
     this.state = {
       name: '',
-      profilePicture: {uri:''}
+      pic: {uri:''}
     }
   }
 
@@ -55,11 +56,11 @@ class AddCertScreen extends Component {
     return (
       <View style={styles.container}>
         <View
-          style={styles.profilePictureContainer}>
+          style={styles.picContainer}>
 
           <Image
-            source={this.state.profilePicture}
-            style={styles.profilePicture}
+            source={this.state.pic}
+            style={styles.pic}
           />
         <View style={{flexDirection:'row'}}>
           <Button
@@ -71,7 +72,7 @@ class AddCertScreen extends Component {
             onPress={ () => this.takePicture()}
             />
             <Button
-              disabled={this.state.profilePicture.isStatic!==true}
+              disabled={this.state.pic.isStatic!==true}
               raised
               style={{flex:1}}
               icon={{name:'upload', type: 'font-awesome'}}
@@ -81,10 +82,15 @@ class AddCertScreen extends Component {
               />
           </View>
         </View>
-
-
       </View>
     );
+  }
+
+  _upload() {
+    Alert.alert(
+      'Upload',
+      'Comming up soon ...'
+    )
   }
 
   takePicture() {
@@ -93,7 +99,7 @@ class AddCertScreen extends Component {
     , (picture) => {
       if (picture.data) {
         this.setState({
-          profilePicture: {
+          pic: {
             uri: 'data:image/jpeg;base64,' + picture.data,
             isStatic: true,
             image: picture
@@ -104,7 +110,7 @@ class AddCertScreen extends Component {
   }
 
   uploadImage(){
-    api.postCertImage(this.state.profilePicture.image, '1000')
+    api.postCertImage(this.state.pic.image, '1000')
   }
 
 }

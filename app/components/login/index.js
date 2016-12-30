@@ -9,7 +9,6 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-//import Dashboard from '../dashboard'
 import {
   Button
 }from 'react-native-elements';
@@ -30,7 +29,6 @@ export default class LoginScreen extends Component {
 
    _navigate() {
      this.props.navigator.push({
-       //component: Dashboard
        component: ProductNav
      })
   }
@@ -39,7 +37,7 @@ export default class LoginScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.background} resizeMode="cover">
+        <View resizeMode="cover">
           <View style={styles.markWrap}>
             <Image source={logo} style={styles.mark}/>
           </View>
@@ -93,11 +91,6 @@ const styles = StyleSheet.create({
   },
   mark: {
   alignItems: 'center',
-  },
-  background: {
-    width,
-    height,
-    //backgroundColor: "white",
   },
   wrapper: {
     paddingVertical: 30,
