@@ -23,8 +23,8 @@ export default class PdfViewer extends Component {
       let link = api.getCertImageUrl(rowData.certificateId);
       return(
         <View style={styles.container}>
-          <WebView source={{uri: link}} />
-          
+          <WebView scalesPageToFit={true} source={{uri: link}} />
+
           <Text style={styles.rowBoldfield}>
               File name : {rowData.fileName}
           </Text>

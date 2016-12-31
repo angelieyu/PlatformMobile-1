@@ -126,7 +126,9 @@ render() {
             onPress={ this._toBeDetermine }
             />
         </View>
+
       </View>
+      <PushController/>
     </View>
     );
   }

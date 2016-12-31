@@ -1,6 +1,6 @@
 // const url = 'http://10.1.100.145:8080/api'
-const url = 'http://10.21.61.189:8080/cert.json';
-// const orgUrl = 'http://192.168.1.9:8080/org.json'
+const url = 'http://192.168.1.5:8080/cert.json';
+const tempOrgUrl = 'http://192.168.1.5:8080/org.json'
 //const url = 'http://localhost:8082/certs.json';
 
 let api = {
@@ -41,8 +41,8 @@ let api = {
 
     getOrgList(){
       // let listURL = url + '/configuration/organizations';
-      let listURL = url;
-      return fetch(listURL)
+      let orgURL = tempOrgUrl;
+      return fetch(orgURL)
           .then((res) => res.json())
           .then((responseJson)=>{
             return responseJson;
