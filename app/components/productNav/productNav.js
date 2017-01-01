@@ -63,9 +63,12 @@ export default class ProductNav extends Component {
 
  componentDidMount() {
   AppState.addEventListener('change', this._onLocalNotification);
+  AppState.addEventListener('change', this.onLocalNotificationEfiling);
+
 }
 
 componentWillUnmount() {
+  AppState.removeEventListener('change', this._onLocalNotification);
   AppState.removeEventListener('change', this._onLocalNotification);
 }
 
@@ -86,6 +89,15 @@ _onLocalNotification(notification){
     PushNotification.localNotificationSchedule({
       message: 'Your exemption with certificates# "333-123-999" will expire tomorrow.',
       date: new Date(Date.now() + 1000),
+    });
+  }
+}
+
+onLocalNotificationEfiling(notification){
+  if(notification === 'background') {
+    PushNotification.localNotificationSchedule({
+      message: 'Johanna has completed efiling for Sun Life Financial with file 123-098-1234',
+      date: new Date(Date.now() + 10000),
     });
   }
 }

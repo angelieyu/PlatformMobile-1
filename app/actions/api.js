@@ -4,8 +4,8 @@ const tempOrgUrl = 'http://192.168.1.10:8080/org.json'
 //const url = 'http://localhost:8082/certs.json';
 
 let api = {
-    getCertList(){
-        // let listURL = url + '/certificates';
+    getCertList(page, perPage){
+        // let listURL = url + '/certificates?page='+page+'&perPage='perPage!==0?perPage:'';
         let listURL = url;
         return fetch(listURL).then((res) => res.json());
     },

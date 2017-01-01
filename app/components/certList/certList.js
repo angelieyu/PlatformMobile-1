@@ -22,6 +22,7 @@ class ListCert extends Component {
     super(props);
     this.listHeight = 0;
     this.footerY = 0;
+    this.currentPage = 0;
     let dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});
     this.state = {
       dataSource: dataSource.cloneWithRows(certs),
@@ -36,8 +37,8 @@ class ListCert extends Component {
      if (!this.state.isLoading){
        this.setState({isLoading:true});
        let footerY = this.footerY;
-
-       api.getCertList2().then( (res) => {
+       let pageToLoad = this.currentPage++;
+       api.getCertList(pageToLoad,50).then( (res) => {
            // merge the rows
            var newCertsList = certs.concat(res.map.items);
            console.log(newCertsList.length);
@@ -53,7 +54,8 @@ class ListCert extends Component {
 
 
   componentDidMount(){
-    api.getCertList().then( (res) => {
+    // load cert List initially
+    api.getCertList(0, 0 ).then( (res) => {
         certs = res.map.items;
         console.log(certs);
         this.setState({
