@@ -103,6 +103,7 @@ class AddCertScreen extends Component {
           <Image
             source={this.state.pic}
             style={styles.pic}
+            borderColor='#cac8c8'
             resizeMode='contain'
           >
         </Image>

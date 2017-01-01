@@ -17,6 +17,19 @@ export default class PdfViewer extends Component {
     return t.format("dd.mm.yyyy hh:MM:ss");
   }
 
+  timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+  }
+
   render() {
 
       let rowData = this.props.rowData;
@@ -50,7 +63,7 @@ export default class PdfViewer extends Component {
             Page Count : {rowData.pageCount}
           </Text>
           <Text style={styles.rowBoldfield}>
-            Date of Upload : {(rowData.dateOfUpload)}
+            Date of Upload : {this.timeConverter(rowData.dateOfUpload)}
           </Text>
         </View>
       );
@@ -61,7 +74,8 @@ export default class PdfViewer extends Component {
 const styles = StyleSheet.create({
     container: {
          flex:1,
-         marginTop:25
+         marginTop:25,
+         padding:8
     },
     linkfield : {
           color: 'blue',
@@ -70,7 +84,7 @@ const styles = StyleSheet.create({
     },
     rowBoldfield: {
           fontSize: 14,
-          marginBottom: 8,
+          marginBottom: 4,
           fontFamily: 'Avenir'
     },
 });
