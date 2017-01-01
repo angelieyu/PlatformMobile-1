@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     },
     rowBoldfield: {
           fontSize: 14,
-          marginBottom: 8
+          marginBottom: 8,
+          fontFamily: 'Avenir'
     },
 });

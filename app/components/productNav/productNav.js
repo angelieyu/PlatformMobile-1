@@ -84,7 +84,7 @@ _toBeDetermine() {
 _onLocalNotification(notification){
   if(notification === 'background') {
     PushNotification.localNotificationSchedule({
-      message: 'Your certificate will be expired soon.',
+      message: 'Your exemption with certificates# "333-123-999" will expire tomorrow.',
       date: new Date(Date.now() + 1000),
     });
   }

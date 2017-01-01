@@ -15,6 +15,7 @@ import {
   Button
 }from 'react-native-elements';
 import api from '../../actions/api';
+import Dashboard from '../dashboard';
 
 var Item = Picker.Item;
 var ImagePicker = require('react-native-image-picker');
@@ -67,7 +68,7 @@ class AddCertScreen extends Component {
     return(
       <View style={{height:190,paddingVertical:0}}>
       <Picker
-        itemStyle={{fontSize:17}}
+        itemStyle={{fontSize:17, fontFamily: 'Avenir'}}
         style={{width:200, height:190}}
       selectedValue={this.state.selectedOrg}
         onValueChange={(selectedItem)=>{
@@ -102,6 +103,7 @@ class AddCertScreen extends Component {
           <Image
             source={this.state.pic}
             style={styles.pic}
+            resizeMode='contain'
           >
         </Image>
         <View style={{flexDirection:'row'}}>
@@ -151,9 +153,13 @@ class AddCertScreen extends Component {
       }
     });
   }
-
+  navigateToDashboard() {
+    this.props.navigator.push({
+      component: Dashboard
+    })
+  }
   uploadImage(){
-    api.postCertImage(this.state.pic.image, this.state.selectedOrg);
+    api.postCertImage(this.state.pic.image, this.state.selectedOrg, this.navigateToDashboard());
   }
 
 }

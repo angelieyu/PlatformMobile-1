@@ -1,6 +1,6 @@
 // const url = 'http://10.1.100.145:8080/api'
-const url = 'http://192.168.1.5:8080/cert.json';
-const tempOrgUrl = 'http://192.168.1.5:8080/org.json'
+const url = 'http://192.168.1.10:8080/cert.json';
+const tempOrgUrl = 'http://192.168.1.10:8080/org.json'
 //const url = 'http://localhost:8082/certs.json';
 
 let api = {
@@ -17,7 +17,7 @@ let api = {
       //return fetch(listURL).then((res) => res.json());
     },
 
-    postCertImage(file, orgId){
+    postCertImage(file, orgId, callback){
       let formData = new FormData();
       formData.append('organizationId', orgId);
       formData.append('file', file);
@@ -31,6 +31,9 @@ let api = {
       })
         .then((res)=>{
           console.log("image upload")
+          if (callback){
+            callback();
+          }
           return res;
         })
         .catch((error)=>{

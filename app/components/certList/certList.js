@@ -20,13 +20,37 @@ class ListCert extends Component {
 
   constructor(props) {
     super(props);
-
+    this.listHeight = 0;
+    this.footerY = 0;
     let dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});
     this.state = {
       dataSource: dataSource.cloneWithRows(certs),
       isLoading:true
     }
   }
+
+  loadMore(){
+     console.log("loadmore is being called");
+     // should call the same api with different page id for the API.
+
+     if (!this.state.isLoading){
+       this.setState({isLoading:true});
+       let footerY = this.footerY;
+
+       api.getCertList2().then( (res) => {
+           // merge the rows
+           var newCertsList = certs.concat(res.map.items);
+           console.log(newCertsList.length);
+           this.setState({
+             dataSource: this.state.dataSource.cloneWithRows(newCertsList),
+             isLoading:false
+           })
+           // scroll to the row
+           this.scrollToRows(footerY);
+       });
+    }
+ }
+
 
   componentDidMount(){
     api.getCertList().then( (res) => {
@@ -39,6 +63,34 @@ class ListCert extends Component {
     });
   }
 
+  scrollToRows(footerY) {
+     console.log("footerY", footerY);
+     console.log("listHeight", this.listHeight);
+
+
+         if (this.listHeight && this.footerY && this.footerY > this.listHeight) {
+           // Calculates the y scroll position inside the ListView
+           const scrollTo = this.footerY - (this.listHeight ) ;
+
+           // Scroll that sucker!
+           this.refs.listView.scrollTo({
+             y: scrollTo,
+             animated: true,
+           })
+         }
+
+
+     // if (footerY > this.listHeight) {
+     //   // Calculates the y scroll position inside the ListView
+     //   const scrollTo = footerY- this.listHeight;
+     //   this.refs.listView.scrollTo({
+     //     y: scrollTo,
+     //     animated: true,
+     //   })
+     // }
+ }
+
+
 
   render() {
 
@@ -48,10 +100,16 @@ class ListCert extends Component {
 
     return (
       <ListView
+        ref='listView'
         dataSource = {this.state.dataSource}
         renderRow = {this.renderRow.bind(this)}
         renderHeader = {() => <View style={{height: 45, backgroundColor: '#f5f5f5', marginBottom:10}} />}
         onEndReached = {() => console.log('')}
+        onEndReachedThreshold= {0}
+        onEndReached={this.onEndReached}
+        onLayout={this.onLayout}
+        renderFooter={this.renderFooter}
+        onScroll={this.onScroll}
         renderSeparator = {(sectionID, rowID) =>
           <View
             style={styles.style_separator}
@@ -81,12 +139,6 @@ class ListCert extends Component {
               <Text style={styles.rowfield}>
                 File name :  {rowData.fileName}
               </Text>
-              <Text style={styles.rowfield}>
-                Certificate Number : {rowData.certificateNumber}
-              </Text>
-              <Text style={styles.rowfield}>
-                Expiration Date : {rowData.expirationDate}
-              </Text>
          </View>
          <View style={styles.separator} />
         </View>
@@ -115,6 +167,34 @@ class ListCert extends Component {
         );
   }
 
+  onEndReached = () => {
+    console.log("onEndReached");
+   this.loadMore();
+  }
+
+  onScroll = () => {
+    // this.isUserScrolling = true;
+    // console.log("onScroll");
+  }
+
+  onFooterLayout = (event) => {
+    const layout = event.nativeEvent.layout
+    this.footerY = layout.y
+    //console.log("onFooterLayout", this.footerY);
+  }
+
+  // Render a fake footer
+  renderFooter = () => {
+    return (
+      <View onLayout={this.onFooterLayout} />
+    )
+  }
+
+  onLayout = (event) => {
+    const layout = event.nativeEvent.layout
+    this.listHeight = layout.height
+  }
+
 }
 
 const styles = StyleSheet.create({
@@ -137,15 +217,21 @@ const styles = StyleSheet.create({
           backgroundColor: '#ecf0f3',
   },
   rowBoldfield: {
-        fontSize: 14,
-        marginBottom: 8
+        fontSize: 16,
+        fontFamily: 'Avenir',
+
+        paddingLeft: 5,
+        paddingTop: 5,
   },
   rowfield: {
-      color: '#656565'
+      color: '#656565',
+      fontFamily: 'Avenir',
+      paddingLeft: 5,
+      paddingBottom: 5,
   },
   separator: {
         height: 1,
-        backgroundColor: '#000'
+        backgroundColor: '#cac8c8'
   },
 });
 
