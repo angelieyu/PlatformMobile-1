@@ -22,7 +22,6 @@ class ProductNavigateScreen extends Component {
      super(props);
    }
 
-
     render() {
         return (
             <NavigatorIOS

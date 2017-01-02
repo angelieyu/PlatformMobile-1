@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   }
 });
 
+
 export default class ProductNav extends Component {
   constructor(props) {
    super(props);
@@ -64,7 +65,6 @@ export default class ProductNav extends Component {
  componentDidMount() {
   AppState.addEventListener('change', this._onLocalNotification);
   AppState.addEventListener('change', this.onLocalNotificationEfiling);
-
 }
 
 componentWillUnmount() {
@@ -105,7 +105,6 @@ onLocalNotificationEfiling(notification){
 render() {
   return (
     <View style={styles.container}>
-
       <View style={styles.logo}>
         <Image source={logo} style={styles.mark}>
         </Image>

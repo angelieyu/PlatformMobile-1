@@ -138,6 +138,12 @@ class AddCertScreen extends Component {
   //     'Comming up soon ...'
   //   )
   // }
+  _upload() {
+    Alert.alert(
+      'Upload',
+      'Comming up soon ...'
+    )
+  }
 
   takePicture() {
     ImagePicker.showImagePicker(
