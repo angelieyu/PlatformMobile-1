@@ -34,6 +34,37 @@ export default class PdfViewer extends Component {
 
       let rowData = this.props.rowData;
       let link = api.getCertImageUrl(rowData.certificateId);
+      // <View style={styles.container}>
+      //   <WebView scalesPageToFit={true} source={{uri: link}} />
+      //
+      //   <Text style={styles.rowBoldfield}>
+      //       File name : {rowData.fileName}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Certificate Number : {rowData.certificateNumber}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Organization : {rowData.organizationName}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Effective Date : {rowData.effectiveDate}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Expiration Date : {rowData.expirationDate}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Customer Name : {rowData.customerName}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Customer Number : {rowData.customerNumber}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Page Count : {rowData.pageCount}
+      //   </Text>
+      //   <Text style={styles.rowBoldfield}>
+      //     Date of Upload : {this.timeConverter(rowData.dateOfUpload)}
+      //   </Text>
+      // </View>
       return(
         <View style={styles.container}>
           <WebView scalesPageToFit={true} source={{uri: link}} />
@@ -42,22 +73,7 @@ export default class PdfViewer extends Component {
               File name : {rowData.fileName}
           </Text>
           <Text style={styles.rowBoldfield}>
-            Certificate Number : {rowData.certificateNumber}
-          </Text>
-          <Text style={styles.rowBoldfield}>
             Organization : {rowData.organizationName}
-          </Text>
-          <Text style={styles.rowBoldfield}>
-            Effective Date : {rowData.effectiveDate}
-          </Text>
-          <Text style={styles.rowBoldfield}>
-            Expiration Date : {rowData.expirationDate}
-          </Text>
-          <Text style={styles.rowBoldfield}>
-            Customer Name : {rowData.customerName}
-          </Text>
-          <Text style={styles.rowBoldfield}>
-            Customer Number : {rowData.customerNumber}
           </Text>
           <Text style={styles.rowBoldfield}>
             Page Count : {rowData.pageCount}

@@ -55,7 +55,7 @@ class ListCert extends Component {
 
   componentDidMount(){
     // load cert List initially
-    api.getCertList(0, 0 ).then( (res) => {
+    api.getCertList(0, 0).then( (res) => {
         certs = res.map.items;
         console.log(certs);
         this.setState({
@@ -171,7 +171,7 @@ class ListCert extends Component {
 
   onEndReached = () => {
     console.log("onEndReached");
-   this.loadMore();
+    this.loadMore();
   }
 
   onScroll = () => {

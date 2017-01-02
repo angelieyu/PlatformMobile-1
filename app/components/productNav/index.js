@@ -26,7 +26,7 @@ class ProductNavigateScreen extends Component {
     render() {
         return (
             <NavigatorIOS
-                barTintColor='#6ec4e9'
+                barTintColor='#333e48'
                 titleTextColor='#fff'
                 tintColor='#fff'
                 style={styles.container}
