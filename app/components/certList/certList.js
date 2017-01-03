@@ -7,6 +7,7 @@ import {
   ListView,
   TouchableHighlight,
   Linking,
+  RefreshControl,
 } from 'react-native';
 import {
   Button
@@ -28,6 +29,23 @@ class ListCert extends Component {
       dataSource: dataSource.cloneWithRows(certs),
       isLoading:true
     }
+  }
+
+  _onRefresh() {
+    this.setState({
+      isLoading:true});
+    api.getCertList(0, 0).then( (res) => {
+
+      setTimeout(() => {
+        certs = res.map.items;
+        console.log(certs);
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(certs),
+          isLoading:false
+        })
+      }, 1000);
+    });
+
   }
 
   loadMore(){
@@ -81,15 +99,6 @@ class ListCert extends Component {
            })
          }
 
-
-     // if (footerY > this.listHeight) {
-     //   // Calculates the y scroll position inside the ListView
-     //   const scrollTo = footerY- this.listHeight;
-     //   this.refs.listView.scrollTo({
-     //     y: scrollTo,
-     //     animated: true,
-     //   })
-     // }
  }
 
 
@@ -117,6 +126,13 @@ class ListCert extends Component {
             style={styles.style_separator}
             key={`${sectionID} - ${rowID}`}
           />}
+
+          refreshControl={
+          <RefreshControl
+            refreshing={this.state.isLoading}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
       >
       <Button
         raised
