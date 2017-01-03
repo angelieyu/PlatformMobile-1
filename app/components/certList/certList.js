@@ -98,13 +98,11 @@ class ListCert extends Component {
              animated: true,
            })
          }
-
  }
 
 
 
   render() {
-
     if (this.state.isLoading) {
           return this.renderLoadingView();
     }
