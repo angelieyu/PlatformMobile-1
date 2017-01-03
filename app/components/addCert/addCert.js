@@ -145,9 +145,16 @@ class AddCertScreen extends Component {
     )
   }
 
+
   takePicture() {
-    ImagePicker.showImagePicker(
-      {title: "Add Certificate"}
+    let storageOptions
+    ImagePicker.showImagePicker({
+        title: "Add Certificate",
+        storageOptions:{
+          skipBackup: true,
+          path:'images'
+        }
+      }
     , (picture) => {
       if (picture.data) {
         this.setState({
@@ -167,6 +174,7 @@ class AddCertScreen extends Component {
   }
   uploadImage(){
     api.postCertImage(this.state.pic.image, this.state.selectedOrg, this.navigateToDashboard());
+      // api.postCertImage(this.state.pic.image, this.state.selectedOrg, ()=>{});
   }
 
 }
